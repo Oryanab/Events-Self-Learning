@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      #field {
+        width: 200px;
+        height: 150px;
+        border: 10px solid black;
+        background-color: #00ff00;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+
+  <body style="height: 2000px">
+    Click on a field to move the ball there.
+    <br />
+    The ball should never leave the field.
+
+    <div id="field">
+      <img src="https://en.js.cx/clipart/ball.svg" id="ball" /> . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . .
+    </div>
+
+    <script>
+      const ball = document.getElementById("ball");
+      const field = document.getElementById("field");
+      field.addEventListener("mousedown", (e) => {
+        const x_pos = e.clientX;
+
+        const y_pos = e.clientY;
+
+        ball.style.position = "absolute";
+        if (x_pos > 15 && x_pos < 200 && y_pos > 50 && y_pos < 200) {
+          ball.style.left = x_pos + "px";
+          ball.style.top = y_pos + "px";
+        } else {
+          ball.style.left = x_pos - 20 + "px";
+          ball.style.top = y_pos - 40 + "px";
+        }
+
+        // top-border = {x:15 - x:200, y:50-y:200}
+      });
+    </script>
+  </body>
+</html>
