@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <style>
+      li{
+          display: block;
+      }
+      .slides{
+          display: center;
+      }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- create your markup and styles -->
+
+  
+
+    
+    <ul class="slides">
+    <button class="previous">⇦</button>
+    <button class="next">⇨</button>
+      <li><img src="https://en.js.cx/carousel/1.png"></li>
+      <li><img src="https://en.js.cx/carousel/2.png"></li>
+      <li><img src="https://en.js.cx/carousel/3.png"></li>
+      <li><img src="https://en.js.cx/carousel/4.png"></li>
+      <li><img src="https://en.js.cx/carousel/5.png"></li>
+      <li><img src="https://en.js.cx/carousel/6.png"></li>
+      <li><img src="https://en.js.cx/carousel/7.png"></li>
+      <li><img src="https://en.js.cx/carousel/8.png"></li>
+      <li><img src="https://en.js.cx/carousel/9.png"></li>
+      <li><img src="https://en.js.cx/carousel/10.png"></li>
+    </ul>
+
+
+  <script>
+    // label the images to visually track them, just for convenience,
+    // this code can be removed
+    const showSlides = (n)=>{
+        let i;
+        let slides = document.getElementsByTagName('li');
+        if (n>slides.length){
+            indexShown = slides.slice(0,3)
+        }
+        if (n<1){
+            indexShown = slides.length
+        }
+        for (let n of slides.length){
+            n.style.display = 'none'
+        }
+        slides[indexShown - 3].style.display = 'block'
+    }
+    
+
+    // ...your code to make carousel alive!
+  </script>
+
+</body>
+</html>
