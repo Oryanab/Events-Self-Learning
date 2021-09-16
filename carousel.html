@@ -5,10 +5,7 @@
   <link rel="stylesheet" href="style.css">
   <style>
       li{
-          display: block;
-      }
-      .slides{
-          display: center;
+        display: inline-block;
       }
 
   </style>
@@ -17,13 +14,9 @@
 <body>
 
   <!-- create your markup and styles -->
-
-  
-
-    
     <ul class="slides">
-    <button class="previous">⇦</button>
-    <button class="next">⇨</button>
+    <button id="previous">⇦</button>
+    <button id="next">⇨</button>
       <li><img src="https://en.js.cx/carousel/1.png"></li>
       <li><img src="https://en.js.cx/carousel/2.png"></li>
       <li><img src="https://en.js.cx/carousel/3.png"></li>
@@ -38,25 +31,44 @@
 
 
   <script>
-    // label the images to visually track them, just for convenience,
-    // this code can be removed
-    const showSlides = (n)=>{
-        let i;
-        let slides = document.getElementsByTagName('li');
-        if (n>slides.length){
-            indexShown = slides.slice(0,3)
-        }
-        if (n<1){
-            indexShown = slides.length
-        }
-        for (let n of slides.length){
-            n.style.display = 'none'
-        }
-        slides[indexShown - 3].style.display = 'block'
-    }
-    
-
     // ...your code to make carousel alive!
+    const imgList = []
+    let next = 3;
+    let prvious = 0;
+    const img = document.querySelectorAll('li')
+    for (let i of img){
+      i.style.display='none'
+      imgList.push(i)
+    }
+    const buttonNext = document.getElementById('next')
+    const buttonPrevious = document.getElementById('previous')
+
+    const firstThree = imgList.slice(prvious,next)
+    for (let i of firstThree){
+        i.style.display='block'
+      }
+
+
+    buttonNext.addEventListener('click',e=>{
+      next+=3
+      prvious = next - 3
+      const thrwwRow = imgList.slice(prvious,next)
+      for (let i of thrwwRow){
+        i.style.display='block'
+        thrwwRow.splice(prvious,next)
+      }
+    })
+
+    buttonPrevious.addEventListener('click',e=>{
+      next-=3
+      prvious = next - 3
+      const thrwwRow = imgList.slice(prvious,next)
+      for (let i of thrwwRow){
+        i.style.display='none'
+        thrwwRow.splice(prvious,next)
+      }
+    })
+
   </script>
 
 </body>
