@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .slider {
+        border-radius: 5px;
+        background: #e0e0e0;
+        background: linear-gradient(left top, #e0e0e0, #eeeeee);
+        width: 310px;
+        height: 15px;
+        margin: 5px;
+      }
+
+      .thumb {
+        width: 10px;
+        height: 25px;
+        border-radius: 3px;
+        position: relative;
+        left: 10px;
+        top: -5px;
+        background: blue;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="slider" class="slider">
+      <div class="thumb"></div>
+    </div>
+
+    <script>
+      const druggble = document.querySelector(".thumb");
+      const container = document.querySelector(".slider");
+
+      druggble.onmousedown = function (event) {
+        druggble.style.position = "flex";
+        druggble.style.zIndex = 0;
+        event.preventDefault();
+
+        container.append(druggble);
+
+        function moveAt(pageX) {
+          druggble.style.left = pageX - druggble.offsetWidth / 2 + "px";
+        }
+
+        function onMouseMove(event) {
+          moveAt(event.pageX);
+        }
+        document.addEventListener("mousemove", onMouseMove);
+
+        druggble.onmouseup = function () {
+          document.removeEventListener("mouseup", onMouseUp);
+          document.removeEventListener("mousemove", onMouseMove);
+          druggble.onmouseup = null;
+        };
+      };
+    </script>
+  </body>
+</html>
